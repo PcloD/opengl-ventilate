@@ -12,8 +12,11 @@ CXX_FLAGS += -MMD
 all: $(OBJ_FILES)
 	$(CXX) $(LD_FLAGS) -o build/ventilate $^
 
-build/%.o: src/%.cpp
+build/%.o: src/%.cpp src/glcorearb.h
 	$(CXX)  $(CXX_FLAGS) -c -o $@ $<
+
+src/glcorearb.h:
+	curl https://www.opengl.org/registry/api/GL/glcorearb.h > src/glcorearb.h
 
 .PHONY: clean
 clean:
