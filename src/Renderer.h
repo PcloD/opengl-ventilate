@@ -3,7 +3,10 @@
 
 class Renderer {
 	public:
-		Renderer(unsigned int width, unsigned int height) {}
+		Renderer(unsigned int width, unsigned int height) {
+			(void) width;
+			(void) height;
+		}
 		virtual ~Renderer() {}
 
 		virtual void renderFrame(unsigned int time) = 0;

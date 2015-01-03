@@ -1,8 +1,8 @@
 CPP_FILES := $(wildcard src/*.cpp)
 OBJ_FILES := $(addprefix build/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-LD_FLAGS := -lGL $(shell sdl2-config --libs)
-CXX_FLAGS := -std=c++11 $(shell sdl2-config --cflags)
+LD_FLAGS := -lGL $(shell sdl2-config --libs) -Wall -Wextra
+CXX_FLAGS := -std=c++11 $(shell sdl2-config --cflags) -Wall -Wextra
 
 # add header dependency generation
 DEPS := $(OBJ_FILES:.o=.d)

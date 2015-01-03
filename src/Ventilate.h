@@ -13,6 +13,8 @@ class Ventilate {
 	private:
 		void checkSDLError(int line = -1);
 		void logSDLError(std::string message);
+
+		SDL_GLContext context = nullptr;
 };
 
 template<typename Renderer>
@@ -32,7 +34,7 @@ Ventilate<Renderer>::Ventilate(const char name[], unsigned int width, unsigned i
 	}
 
 	checkSDLError(__LINE__);
-	SDL_GLContext mainContext = SDL_GL_CreateContext(mainWindow);
+	context = SDL_GL_CreateContext(mainWindow);
 	checkSDLError(__LINE__);
 	SDL_GL_SetSwapInterval(1);
 
@@ -55,6 +57,7 @@ Ventilate<Renderer>::Ventilate(const char name[], unsigned int width, unsigned i
 
 template<typename Renderer>
 Ventilate<Renderer>::~Ventilate() {
+	SDL_GL_DeleteContext(context);
 	SDL_Quit();
 }
 
